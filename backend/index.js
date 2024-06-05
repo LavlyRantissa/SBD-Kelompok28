@@ -18,7 +18,7 @@ app.use('/users', userRoutes);
 app.use('/cats', catRoutes);
 app.use('/posts', postRoutes);
 app.use('/adoption', adoptionRoutes);
-app.use('/donations', donationRoutes);
+app.use('/donation', donationRoutes);
 
 const PORT = process.env.PORT || 9453;
 app.listen(PORT, () => {

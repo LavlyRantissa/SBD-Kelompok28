@@ -4,18 +4,33 @@ pool.connect().then(() => {
 	console.log("Connected to PSQL Database");
 })
 
-const createUser = async (username, email, phoneNumber, password) => {
+const signIn = async (email, password) => {
     try {
-        const result = await pool.query(
-            'INSERT INTO users (username, password, email, phone_number, balance, profile_picture) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-            [username, password, email, phoneNumber, 0.00, null]
-        );
-        return result.rows[0];
+        const result = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
+        const user = result.rows[0];
+        if (!user) {
+            throw new Error('User not found or invalid password');
+        }
+        return user;
     } catch (error) {
-        console.error('Error creating user:', error);
+        console.error('Error signing in:', error);
         throw error;
     }
 };
+
+const signUp = async (username, email, password, phone_number) => {
+    try {
+        const result = await pool.query(
+            'INSERT INTO users (username, email, password, phone_number) VALUES ($1, $2, $3, $4) RETURNING username, email, password, phone_number',
+            [username, email, password, phone_number]
+        );
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error signing up:', error);
+        throw error;
+    }
+};
+
 
 const getUser = async () => {
     try {
@@ -37,12 +52,24 @@ const getUserById = async (id) => {
     }
 };
 
+const topupUser = async (id, amount) => {
+    try {
+        const result = await pool.query(
+            'UPDATE users SET balance = balance + $1 WHERE user_id = $2 RETURNING *',
+            [amount, id]
+        );
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error topping up user:', error);
+        throw error;
+    }
+};
+
 const updateUser = async (id, username, email, phoneNumber, password) => {
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
         const result = await pool.query(
             'UPDATE users SET username = $1, email = $2, phone_number = $3, password = $4 WHERE user_id = $5 RETURNING *',
-            [username, email, phoneNumber, hashedPassword, id]
+            [username, email, phoneNumber, password, id]
         );
         return result.rows[0];
     } catch (error) {
@@ -60,4 +87,4 @@ const deleteUser = async (id) => {
     }
 };
 
-module.exports = { createUser, getUser, getUserById, updateUser, deleteUser };
+module.exports = { signIn, signUp, getUser, topupUser, getUserById, updateUser, deleteUser };

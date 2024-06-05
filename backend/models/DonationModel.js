@@ -23,17 +23,4 @@ const getDonationsByCatId = async (catId) => {
     }
 };
 
-const updateDonation = async (donationId, balance, donateMessage) => {
-    try {
-        const result = await pool.query(
-            'UPDATE donation SET balance = $1, donate_message = $2 WHERE donate_id = $3 RETURNING *',
-            [balance, donateMessage, donationId]
-        );
-        return result.rows[0];
-    } catch (error) {
-        console.error('Error updating donation:', error);
-        throw error;
-    }
-};
-
-module.exports = { createDonation, getDonationsByCatId, updateDonation };
+module.exports = { createDonation, getDonationsByCatId };

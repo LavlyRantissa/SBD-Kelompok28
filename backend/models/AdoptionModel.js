@@ -13,22 +13,12 @@ const createAdoption = async (userId, catId, adoptDate) => {
     }
 };
 
-const getAdoptionsByUserId = async (userId) => {
+const getAdoption = async () => {
     try {
-        const result = await pool.query('SELECT * FROM adoption WHERE user_id = $1', [userId]);
+        const result = await pool.query('SELECT * FROM adoption');
         return result.rows;
     } catch (error) {
-        console.error('Error fetching adoptions by user:', error);
-        throw error;
-    }
-};
-
-const getAdoptionsByCatId = async (catId) => {
-    try {
-        const result = await pool.query('SELECT * FROM adoption WHERE cat_id = $1', [catId]);
-        return result.rows;
-    } catch (error) {
-        console.error('Error fetching adoptions by cat:', error);
+        console.error('Error fetching adoption:', error);
         throw error;
     }
 };
@@ -46,4 +36,4 @@ const updateAdoption = async (adoptionId, adoptDate) => {
     }
 };
 
-module.exports = { createAdoption, getAdoptionsByUserId, getAdoptionsByCatId, updateAdoption };
+module.exports = { createAdoption, getAdoption, updateAdoption };
