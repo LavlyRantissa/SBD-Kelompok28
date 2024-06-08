@@ -1,33 +1,13 @@
-const { createAdoption, getAdoption, updateAdoption } = require('../models/AdoptionModel');
+const { createAdoption } = require('../models/AdoptionModel');
 
-const handleCreateAdoption = async (req, res) => {
-    const { userId, catId, adoptDate } = req.body;
+const handleAdoption = async (req, res) => {
+    const { userId, catId, adoptDate, name, email, phoneNumber, pickupOrDelivery, deliveryAddress, catName, catBreed, catGender } = req.body;
     try {
-        const adoption = await createAdoption(userId, catId, adoptDate);
-        res.status(201).json(adoption);
+        const adoption = await createAdoption(userId, catId, adoptDate, name, email, phoneNumber, pickupOrDelivery, deliveryAddress, catName, catBreed, catGender);
+        res.status(201).json({ message: 'Adoption successful', data: adoption });
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ message: 'Adoption failed', error: error.message });
     }
 };
 
-const handleGetAdoption = async (req, res) => {
-    try {
-        const adoption = await getAdoption();
-        res.status(200).json(adoption);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
-
-const handleUpdateAdoption = async (req, res) => {
-    const { adoptionId } = req.params;
-    const { adoptDate } = req.body;
-    try {
-        const adoption = await updateAdoption(adoptionId, adoptDate);
-        res.status(200).json(adoption);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
-
-module.exports = { handleCreateAdoption, handleGetAdoption, handleUpdateAdoption };
+module.exports = { handleAdoption };

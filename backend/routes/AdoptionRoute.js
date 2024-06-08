@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { handleCreateAdoption, handleGetAdoption, handleUpdateAdoption } = require('../controllers/AdoptionController');
+const { handleAdoption } = require('../controllers/AdoptionController');
 
-router.post('/adoptcat', handleCreateAdoption);
-router.get('/adoptinfo', handleGetAdoption);
-router.put('/updateadopt/:adoptionId', handleUpdateAdoption);
+router.post('/adoptcat', handleAdoption);
 
 module.exports = router;

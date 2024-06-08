@@ -4,9 +4,12 @@ pool.connect().then(() => {
 	console.log("Connected to PSQL Database");
 })
 
-const signIn = async (email, password) => {
+const signIn = async (identifier, password) => {
     try {
-        const result = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
+        const result = await pool.query(
+            'SELECT * FROM users WHERE (email = $1 OR username = $1) AND password = $2',
+            [identifier, password]
+        );
         const user = result.rows[0];
         if (!user) {
             throw new Error('User not found or invalid password');
@@ -30,7 +33,6 @@ const signUp = async (username, email, password, phone_number) => {
         throw error;
     }
 };
-
 
 const getUser = async () => {
     try {

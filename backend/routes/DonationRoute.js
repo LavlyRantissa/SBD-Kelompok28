@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { handleCreateDonation, handleGetDonationsByCatId } = require('../controllers/DonationController');
+const { handleAddDonation } = require('../controllers/DonationController');
 
-router.post('/donate', handleCreateDonation);
-router.get('/donate/:catId', handleGetDonationsByCatId);
+router.post('/donate', handleAddDonation);
 
 module.exports = router;

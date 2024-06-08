@@ -1,10 +1,10 @@
 const { pool } = require('../config/db-config.js');
 
-const createDonation = async (catId, balance, donateMessage) => {
+const addDonation = async (amount, donateMessage) => {
     try {
         const result = await pool.query(
-            'INSERT INTO donation (cat_id, balance, donate_message) VALUES ($1, $2, $3) RETURNING *',
-            [catId, balance, donateMessage]
+            'INSERT INTO donation (balance, donate_message) VALUES ($1, $2) RETURNING *',
+            [amount, donateMessage]
         );
         return result.rows[0];
     } catch (error) {
@@ -13,14 +13,4 @@ const createDonation = async (catId, balance, donateMessage) => {
     }
 };
 
-const getDonationsByCatId = async (catId) => {
-    try {
-        const result = await pool.query('SELECT * FROM donation WHERE cat_id = $1', [catId]);
-        return result.rows;
-    } catch (error) {
-        console.error('Error fetching donations:', error);
-        throw error;
-    }
-};
-
-module.exports = { createDonation, getDonationsByCatId };
+module.exports = { addDonation };
