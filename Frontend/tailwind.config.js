@@ -5,14 +5,19 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      current: 'currentColor',
-      'Primary_dark': '#25424C',
-      'Secondary_dark': '#FFA45B',
-      'Third_dark': '#FB770D',
-      'white': '#FFFFFF'
+    extend: {
+      colors: {
+        current: 'currentColor',
+        'primary': '#F78F43',
+        'secondary': '#FFFDD0',
+        'third': '#F5B24D',
+        'white': '#FFFFFF',
+        'black': '#000000'
+      },
+      fontFamily: {
+        josefin_sans: ['Josefin Sans'],
+      },
     },
-    extend: {},
   },
   plugins: [],
 }

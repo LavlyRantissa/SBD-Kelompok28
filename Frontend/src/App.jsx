@@ -1,11 +1,16 @@
 import React from 'react';
-import CardList from './components/Card';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CatList from './components/Card';
+import AddPage from './pages/AddCatto';
 
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      <CardList />
-    </h1>
+    <BrowserRouter>
+      <Routes>
+        <>
+          <Route path="/" element={<CatList />} />
+        </>
+      </Routes>
+    </BrowserRouter>
   )
 }
