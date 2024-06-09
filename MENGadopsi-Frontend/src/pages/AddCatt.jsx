@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-<<<<<<< HEAD
 import { useParams } from "react-router-dom";
 
 const AddCatt = () => {
@@ -27,57 +26,6 @@ const AddCatt = () => {
           alert("Account not found");
         } else {
           alert("Failed to get user details");
-=======
-import { useParams } from 'react-router-dom';
-
-const AddCatt = () => {
-    const { identifier } = useParams();
-    const [catName] = useState("");
-    const [catDescription] = useState("");
-    const [catImage, setCatImage] = useState("");
-    const [gender] = useState("");
-    const [birthDate] = useState("");
-    const [race] = useState("");
-
-    console.log(identifier);
-    useEffect(() => {
-        const getDetails = async () => {
-          try {
-            const response = await fetch(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`);
-            if (response.status === 200) {
-              const data = await response.json();
-              setUserDetail(data.data);
-            } else if (response.status === 404) {
-              alert("Account not found");
-            } else {
-              alert("Failed to get user details");
-            }
-          } catch (error) {
-            console.error(error);
-            alert("Failed to get user details");
-          }
-        };
-    
-        getDetails();
-      }, [identifier]);
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const response = await Axios.post('http://localhost:9453/cats/addcat', {
-                cat_name: catName,
-                description: catDescription,
-                cat_picture: catImage,
-                gender: gender,
-                birthDate: birthDate,
-                race: race,
-                userId: identifier,
-            });
-            console.log('Cat added successfully:', response.data);
-        } catch (error) {
-            console.error('Error adding cat:', error);
->>>>>>> c9d20482a4ec61a1968ae1385b00bc93d04e40ac
         }
       } catch (error) {
         console.error(error);
@@ -95,7 +43,7 @@ const AddCatt = () => {
       const response = await Axios.post("http://localhost:9453/cats/addcat", {
         catName: catName,
         description: catDescription,
-        caticture: linkPicture,
+        catPicture: linkPicture,
         gender: gender,
         birthDate: birthDate,
         race: race,
@@ -118,7 +66,7 @@ const AddCatt = () => {
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "bugtucs0");
-    formData.append("folder", "profile_picture_user");
+    formData.append("folder", "cats_picture");
 
     Axios.post(
       "https://api.cloudinary.com/v1_1/dramhnsj2/image/upload",
@@ -154,9 +102,19 @@ const AddCatt = () => {
           <input
             type="file"
             className="border border-gray-300 px-2 py-2 rounded-md w-full text-[15pt]"
-
+            accept="image/*"
+            onChange={(event) => {
+              setImage(event.target.files[0]);
+            }}
           />
         </div>
+        <button
+            className="bg-fourth text-black font-bold text-[15pt] px-2 py-2 rounded-md hover:scale-[102%] transition-all"
+            onClick={uploadImage}
+            >
+            Upload Image
+        </button>
+
         <div className="mb-4">
           <label className="block mb-2 text-[15pt]">Date of Birth:</label>
           <input

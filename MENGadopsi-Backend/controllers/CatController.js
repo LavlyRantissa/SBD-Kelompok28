@@ -1,4 +1,4 @@
-const { createCat, getCat, getCatById, removeCat} = require('../models/CatModel');
+const { createCat, getCat } = require('../models/CatModel');
 
 const handleCreateCat = async (req, res) => {
     const { catName, catPicture, birthDate, race, gender, description } = req.body;
@@ -19,24 +19,4 @@ const handleGetCats = async (req, res) => {
     }
 };
 
-const handleGetCatsById = async (req, res) => {
-    const {catId} = req.params;
-    try {
-        const cats = await getCatById(catId);
-        res.status(200).json({ message: 'Cats retrieval successful', data: cats });
-    } catch (error) {
-        res.status(500).json({ message: 'Cats retrieval failed', error: error.message });
-    }
-};
-
-const handleRemoveCat = async (req, res) => {
-    const {catId} = req.params;
-    try {
-        const cats = await removeCat(catId);
-        res.status(200).json({ message: 'Cats removed successful', data: cats });
-    } catch (error) {
-        res.status(500).json({ message: 'Cats removed failed', error: error.message });
-    }
-};
-
-module.exports = { handleCreateCat, handleGetCats, handleGetCatsById, handleRemoveCat};
+module.exports = { handleCreateCat, handleGetCats };

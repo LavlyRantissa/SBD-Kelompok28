@@ -159,9 +159,9 @@ const ForgotPassword = () => {
                 <h1 className='confirm-new-password'>
                     Confirm New Password
                 </h1>
-                <h1 className='forgot-password-frame02-input-fieldwith-label2fp'>{identifier}</h1>
+                <h1 className='forgot-password-frame02-input-fieldwith-label2'>{identifier}</h1>
                 <input
-                    className='forgot-password-frame02-input-fieldwith-label1fp'
+                    className='forgot-password-frame02-input-fieldwith-label1'
                     placeholder='  Confirm New Password'
                     type={passwordVisible2 ? "text" : "password"}
                     onChange={handlePasswordMatch}
