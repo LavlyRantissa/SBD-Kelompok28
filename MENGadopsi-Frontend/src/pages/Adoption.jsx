@@ -51,8 +51,7 @@ const Adoption = () => {
         setDelivery(false);
         setPickUpOrDelivery('PICK UP');
         setdDeliveryAddress('');
-        alert(deliveryAddress);
-        alert(pickUpOrDelivery)
+
     };
 
     const handleDelivery = () => {
@@ -60,8 +59,7 @@ const Adoption = () => {
         setDelivery(!delivery);
         setPickUp(false);
         setPickUpOrDelivery('DELIVERY');
-        alert(deliveryAddress);
-        alert(pickUpOrDelivery)
+
     };
 
     const handleAdoption = async (event) => {
