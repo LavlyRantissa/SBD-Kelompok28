@@ -2,24 +2,120 @@ import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Toast } from "flowbite-react";
+import { HiCheck, HiExclamation, HiX } from "react-icons/hi";
 import './Adoption.css'
 
 const Adoption = () => {
-
+    const { identifier, catId} = useParams();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [pickUpOrDelivery, setPickUpOrDelivery] = useState('');
+    const [deliveryAddress, setdDeliveryAddress] = useState('');
+    const [adoptDate, setAdoptDate] = useState('');
+    const [catDetail, setCatDetail] = useState(null);
     const [pickup, setPickUp] = useState(false);
     const [delivery, setDelivery] = useState(false);
+    const [toastFailed, setFailed] = useState(false);
+    const [toastSuccess, setSuccess] = useState(false);
+
+    useEffect(() => {
+        const today = new Date().toISOString().split('T')[0]; // Hanya ambil tanggal, bukan waktu
+        setAdoptDate(today);
+    }, []);
+
+    useEffect(() => {
+        const getDetails = async () => {
+          try {
+            const response = await fetch(`http://localhost:9453/cats/${encodeURIComponent(catId)}`);
+            if (response.status === 200) {
+              const data = await response.json();
+              setCatDetail(data.data[0]);
+            } else if (response.status === 404) {
+              alert("Cat not found");
+            } else {
+              alert("Failed to get Cat details");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("Failed to get cat details");
+          }
+        };
+    
+        getDetails();
+      }, [catId]);
 
     const handlePickup = () => {
         setPickUp(!pickup);
         setDelivery(false);
+        setPickUpOrDelivery('PICK UP');
+        setdDeliveryAddress('');
+        alert(deliveryAddress);
+        alert(pickUpOrDelivery)
     };
 
     const handleDelivery = () => {
+
         setDelivery(!delivery);
         setPickUp(false);
+        setPickUpOrDelivery('DELIVERY');
+        alert(deliveryAddress);
+        alert(pickUpOrDelivery)
     };
+
+    const handleAdoption = async (event) => {
+        event.preventDefault();
+            try {
+                const response = await fetch(`http://localhost:9453/adoption/adoptcat/${encodeURIComponent(identifier)}/${encodeURIComponent(catId)}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ identifier, catId, adoptDate, name, email, phoneNumber, pickUpOrDelivery, deliveryAddress }),
+                });
+
+                if (response.status === 201) {
+                    setSuccess(true);
+                    setTimeout(() => {
+                         setSuccess(false);
+                     }, 3000);
+                } else {
+                    setFailed(true);
+                    setTimeout(() => {
+                         setFailed(false);
+                     }, 3000);
+                }
+            } catch (error) {
+                alert(error);
+            }
+        
+    };
+
+
   return (
     <div className="homepage-container">
+        {toastSuccess && (
+    <Toast className='toast-bgadopt'>
+        <div>
+            <HiCheck className='success-toastadopt' />
+        </div>
+        <div className='toast-textadopt'>Adopt Success!</div>
+        <Toast.Toggle className='toast-closeadopt'/>
+    </Toast>)}
+
+{toastFailed && (
+    <Toast className='toast-bg'>
+        <div>
+            <HiX className='failed-toastadopt' />
+        </div>
+        <div className='toast-textadopt'>Adopt Failed! Cat Has Been Adopted</div>
+        <Toast.Toggle className='toast-closeadopt'/>
+    </Toast>
+)}
+
+
+
       <div className="homepage-homepage">
         <div className="homepage-group1">
         <img
@@ -44,7 +140,7 @@ const Adoption = () => {
           <span>DONATE</span>
         </span>
         <span className="homepage-text08">
-          <span>PROFILE</span>
+        <Link to={`/profilePage/${identifier}`} className='notactiverl'>PROFILE</Link>
         </span>
         <div className="homepage-frame2">
           <span className="homepage-text10">
@@ -72,7 +168,7 @@ const Adoption = () => {
         <span className="homepage-text24">
           <span>Cat Adoption Form</span>
         </span>
-        <button className="homepage-frame00-button">
+        <button className="homepage-frame00-button" onClick={handleAdoption}>
           <span className="homepage-text26">
             <span>Adopt</span>
           </span>
@@ -89,43 +185,58 @@ const Adoption = () => {
           type="text"
           placeholder="Name"
           className="homepage-frame01-input-field"
+          onChange={(event) => setName(event.target.value)}
+        value = {name}
         />
-        <input
-          type="text"
-          placeholder="Cat’s Name"
-          className="homepage-frame01-input-field1"
-        />
-        <input
-          type="text"
-          placeholder="Cat’s Gender"
-          className="homepage-frame01-input-field2"
-        />
-        <input
-          type="text"
-          placeholder="Cat’s Breed"
-          className="homepage-frame01-input-field3"
-        />
+        <div
+          className="homepage-frame01-input-field1">
+            {catDetail ? catDetail.cat_name : "" }
+            </div>
+
+        <div
+          className="homepage-frame01-input-field2">
+             {catDetail ? catDetail.gender : "" }
+            </div>
+        
+        <div
+          className="homepage-frame01-input-field3">
+             {catDetail ? catDetail.race : "" }
+          </div>
+        
         <input
           type="text"
           placeholder="E-Mail"
           className="homepage-frame01-input-field4"
+          onChange={(event) => setEmail(event.target.value)}
+        value = {email}
         />
         <input
           type="text"
           placeholder="Phone number"
           className="homepage-frame01-input-field5"
+          onChange={(event) => setPhoneNumber(event.target.value)}
+        value = {phoneNumber}
         />
+
+        {delivery ? 
+ <input
+ type="text"
+ placeholder="Enter your address"
+ className="homepage-frame01-input-field6"
+ onChange={(event) => setdDeliveryAddress(event.target.value)}
+        value = {deliveryAddress}
+/>
+        :
+        <div className="homepage-frame01-input-field6"> Pick Up At Our Shelter</div>
+      
+        }
         <span className="homepage-text28">
           <span>Address</span>
         </span>
         <span className="homepage-text30">
           <span>Pick Up/Delivery</span>
         </span>
-        <input
-          type="text"
-          placeholder="If user choose ‘Pick Up’, this field \nwill be filled with shelter’s address automatically. If user choose ‘Delivery’, user must fill this field. "
-          className="homepage-frame01-input-field6"
-        />
+       
        
         <span className="homepage-text32">
           <span>Pick Up</span>
@@ -140,4 +251,3 @@ const Adoption = () => {
 }
 
 export default Adoption
-

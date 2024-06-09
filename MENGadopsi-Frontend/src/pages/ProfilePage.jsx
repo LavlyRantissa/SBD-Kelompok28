@@ -16,6 +16,7 @@ const ProfilePage = () => {
     const [buttonPN, setButtonPN] = useState(false);
     const [buttonAddress, setButtonAddress] = useState(false);
     const [buttonBalance, setButtonBalance] = useState(false);
+    const catId = 'fb9f94ec-9113-4011-a23b-d50f54c3fe6f';
 
 
     function toggleButtonPN() {
@@ -166,7 +167,7 @@ const handlePN = async (event) => {
       <div className="profile-page-profile-page">
         <div className="profile-page-group1">
           <span className="profile-page-text">
-            <Link to={`/adoption/${identifier}`} className='notactiverl'>ADOPT</Link>
+            <Link to={`/adoption/${identifier}/${catId}`} className='notactiverl'>ADOPT</Link>
           </span>
           <img
             src="https://res.cloudinary.com/dramhnsj2/image/upload/v1717589840/Frontend-Components/y6e54qbvtwgyyttiimjd.png"
