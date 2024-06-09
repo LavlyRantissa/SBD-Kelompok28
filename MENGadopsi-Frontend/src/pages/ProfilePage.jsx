@@ -6,6 +6,7 @@ import axios from "axios";
 
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
     const { identifier } = useParams();
     const [userDetail, setUserDetail] = useState(null);
     const [image, setImage] = useState(null);
@@ -51,9 +52,9 @@ const handleBalance = async (event) => {
   try {
    
     if (response.status === 200) {
-      alert('top up berhasil');
+      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
     } else {
-      alert('top up gagal');
+      alert('Top Up Failed');
     }
   } catch (error) {
     alert('There was an error. Please try again l3ater.');
@@ -72,9 +73,9 @@ const handleAddress = async (event) => {
   try {
    
     if (response.status === 200) {
-      alert('address berhasil');
+      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
     } else {
-      alert('address gagal');
+      alert('Update Address Failed');
     }
   } catch (error) {
     alert('There was an error. Please try again l3ater.');
@@ -93,9 +94,9 @@ const handlePN = async (event) => {
   try {
    
     if (response.status === 200) {
-      alert('PN berhasil');
+      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
     } else {
-      alert('PN gagal');
+      alert('Failed Update Phone Number');
     }
   } catch (error) {
     alert('There was an error. Please try again l3ater.');
@@ -122,8 +123,7 @@ const handlePN = async (event) => {
         console.log(response);
         const linkPicture = response.data.secure_url;
         setImageUrl(linkPicture);
-        alert(linkPicture);
-  
+      
 
         Axios.put(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`, { linkPicture }, {
           headers: {
@@ -131,8 +131,7 @@ const handlePN = async (event) => {
           },
         }).then((putResponse) => {
           console.log('Image URL saved successfully:', putResponse.data);
-          alert('Berhasil simpan gambar');
-          alert(linkPicture);
+          alert('Profile Picture Saved');
         }).catch((error) => {
           console.error("Error saving the image URL:", error);
         });
@@ -314,7 +313,8 @@ const handlePN = async (event) => {
         </button>
         <button className="profile-page-frame00-button">
           <span className="profile-page-text41">
-            <span>Log Out</span>
+          <Link to={`/`}>Log Out</Link>
+            
           </span>
         </button>
         <img
