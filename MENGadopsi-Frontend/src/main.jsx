@@ -9,6 +9,8 @@ import SignIn from './pages/SignIn.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import Adoption from './pages/Adoption.jsx';
+import CatList from './pages/CatList.jsx';
+import AddCatt from './pages/AddCatt.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
     path: "/adoption/:identifier",
     element: <Adoption />,
   },
+  {
+    path: "/cats",
+    element: <CatList />,
+  },
+  {
+    path: "/cats/addcat",
+    element: <AddCatt />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
