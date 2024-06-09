@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     element: <CatList />,
   },
   {
-    path: "/cats/addcat",
+    path: "/cats/addcat/:identifier",
     element: <AddCatt />,
   }
 ]);

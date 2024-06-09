@@ -8,20 +8,28 @@ const AddCatt = () => {
     const [gender, setGender] = useState("");
     const [birthDate, setBirthDate] = useState("");
     const [race, setRace] = useState("");
-    const [idUser, setIdUser] = useState(null);
+    const {identifier} = useState();
 
     useEffect(() => {
-        const fetchUserId = async () => {
-            try {
-                const response = await Axios.get(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`);
-                setIdUser(response.data.data.id);
-            } catch (error) {
-                console.error('Error fetching user ID:', error);
+        const getDetails = async () => {
+          try {
+            const response = await fetch(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`);
+            if (response.status === 200) {
+              const data = await response.json();
+              setUserDetail(data.data);
+            } else if (response.status === 404) {
+              alert("Account not found");
+            } else {
+              alert("Failed to get user details");
             }
+          } catch (error) {
+            console.error(error);
+            alert("Failed to get user details");
+          }
         };
-
-        fetchUserId();
-    }, []);
+    
+        getDetails();
+      }, [identifier]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,11 +42,29 @@ const AddCatt = () => {
                 gender: gender,
                 birthDate: birthDate,
                 race: race,
-                userId: idUser,
+                userId: identifier,
             });
             console.log('Cat added successfully:', response.data);
         } catch (error) {
             console.error('Error adding cat:', error);
+        }
+    };
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "bugtucs0");
+        formData.append("folder", "profile_picture_user");
+
+        try {
+            const response = await Axios.post(
+                "https://api.cloudinary.com/v1_1/dramhnsj2/image/upload",
+                formData
+            );
+            setCatImage(response.data.secure_url);
+        } catch (error) {
+            console.error("Error uploading image:", error);
         }
     };
 
@@ -52,6 +78,14 @@ const AddCatt = () => {
                         type="text"
                         className="border border-gray-300 px-2 py-2 rounded-md w-full text-[15pt]"
                         value={catName}
+                    />
+                </div>
+                <div className="imageborder">
+                    <label className="block mb-2 text-[15pt]">Image:</label>
+                    <input
+                        type="file"
+                        className="border border-gray-300 px-2 py-2 rounded-md w-full text-[15pt]"
+                        onChange={handleImageUpload}
                     />
                 </div>
                 <div className="mb-4">
