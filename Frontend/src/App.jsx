@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CatList from './components/Card';
-import AddPage from './pages/AddCatto';
+import CatList from './pages/CatList';
+import AddPage from './pages/AddCatt';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <>
-          <Route path="/" element={<CatList />} />
+          <Route path="/cats" element={<CatList />}/>
+          <Route path="/cats/addcat" element={<AddPage />}/>
         </>
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import Axios from "axios";
 
-const AddCatto = () => {
+const AddCatt = () => {
+    const [cat, setData] = useState([]);
+
+    const setCats = async () => {
+        const response = await Axios.get('http://localhost:9453/cats/addcat');
+        setData(response.data.data);
+        console.log(response.data);
+    }
+
     return (
-        <div className="bg-secondary p-4">
-            <div>
-                <h1 className="text-[20pt] font-bold mb-4 ">Add Catto</h1>
+        <div className="bg-secondary p-4 ">
+            <div className='justify-center'>
+                <h1 className="text-[20pt] font-bold mb-4 justify-center">Add Catto</h1>
                 <div className="mb-4">
                     <label className="block mb-2 text-[15pt]">Name:</label>
                     <input
@@ -37,4 +46,4 @@ const AddCatto = () => {
     );
 };
 
-export default AddCatto;
+export default AddCatt;
