@@ -1,0 +1,638 @@
+.profile-page-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .profile-page-profile-page {
+    width: 100%;
+    height: 1024px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(37, 65, 76, 1);
+  }
+  .profile-page-group1 {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 134px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(37, 65, 76, 1);
+  }
+  .profile-page-text {
+    top: 49px;
+    left: 61%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-bg-sub-screenshot2024060301040011 {
+    top: 10px;
+    left: 10px;
+    width: 170px;
+    height: 110px;
+    position: absolute;
+  }
+  .profile-page-text02 {
+    top: 49px;
+    left: 40%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text04 {
+    top: 49px;
+    left: 52%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text06 {
+    top: 49px;
+    left: 69%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text08 {
+    top: 49px;
+    left: 79%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-frame2 {
+    gap: 10px;
+    top: 42px;
+    left: 88%;
+    width: 127px;
+    display: flex;
+    padding: 10px;
+    position: absolute;
+    align-items: center;
+    border-radius: 49px;
+    justify-content: center;
+    background-color: rgba(251, 118, 13, 1);
+  }
+  .profile-page-text10 {
+    color: rgba(37, 65, 76, 1);
+    width: 107px;
+    height: auto;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-rectangle13 {
+    top: 17.5rem;
+    left: 6.5rem;
+    height: 300px;
+    position: absolute;
+  }
+  .profile-page-text12 {
+    top: 270px;
+    left: 149px;
+    color: rgba(0, 0, 0, 1);
+    width: 163px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: center;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text14 {
+    top: 317px;
+    left: 465px;
+    color: rgba(254, 235, 220, 1);
+    width: 300px;
+    height: auto;
+    position: absolute;
+    font-size: 29px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text16 {
+    top: 426px;
+    left: 240px;
+    color: rgba(254, 235, 220, 1);
+    width: 503px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: center;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text18 {
+    top: 473px;
+    left: 433px;
+    color: rgba(254, 235, 220, 1);
+    width: 180px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: center;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text20 {
+    top: 476px;
+    left: 662px;
+    color: rgba(254, 235, 220, 1);
+    width: 180px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+
+  .profile-page-text100 {
+    top: 426px;
+    left: 662px;
+    color: rgba(254, 235, 220, 1);
+    width: 180px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+
+  .profile-page-text22 {
+    top: 531px;
+    left: 662px;
+    color: rgba(254, 235, 220, 1);
+    width: 180px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text24 {
+    top: 587px;
+    left: 662px;
+    color: rgba(254, 235, 220, 1);
+    width: 180px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text26 {
+    top: 531px;
+    left: 443px;
+    color: rgba(254, 235, 220, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: center;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text28 {
+    top: 357px;
+    left: -50px;
+    color: rgba(254, 235, 220, 1);
+    width: 100%;
+    height: auto;
+    position: absolute;
+    font-size: 25px;
+    font-style: italic;
+    text-align: center;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text30 {
+    top: 585px;
+    left: 443px;
+    color: rgba(254, 235, 220, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: center;
+    font-family: Josefin Sans;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-button-new {
+    gap: 8px;
+    top: 469px;
+    left: 850px;
+    width: 100px;
+    height: 2px;
+    display: flex;
+    padding: 18px 22px;
+    position: absolute;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05000000074505806) ;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(255, 164, 91, 1);
+  }
+  .profile-page-text32 {
+    color: rgba(37, 65, 76, 1);
+    font-size: 20px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-button-new1 {
+    gap: 8px;
+    top: 590px;
+    left: 120px;
+    width: 189px;
+    height: 59px;
+    display: flex;
+    padding: 18px 22px;
+    position: absolute;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05000000074505806) ;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(255, 152, 78, 1);
+  }
+  .profile-page-text34 {
+    color: rgba(37, 65, 76, 1);
+    width: 190px;
+    height: auto;
+    font-size: 20px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 100%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-button-new2 {
+    gap: 8px;
+    top: 526px;
+    left: 850px;
+    width: 97px;
+    height: 36px;
+    display: flex;
+    padding: 18px 22px;
+    position: absolute;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05000000074505806) ;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(255, 152, 78, 1);
+  }
+  .profile-page-text36 {
+    color: rgba(37, 65, 76, 1);
+    height: auto;
+    font-size: 20px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-button-new3 {
+    top: 579px;
+    left: 850px;
+    width: 100px;
+    height: 1px;
+    display: flex;
+    padding: 18px 22px;
+    position: absolute;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05000000074505806) ;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(255, 152, 78, 1);
+  }
+  .profile-page-text38 {
+    color: rgba(37, 65, 76, 1);
+    height: auto;
+    font-size: 20px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-text39 {
+    width: 100px;
+    font-size: 17px;
+  }
+  .profile-page-frame00-button {
+    gap: 8px;
+    top: 834px;
+    left: 671px;
+    width: 121px;
+    height: 55px;
+    display: flex;
+    padding: 14px 24px;
+    position: absolute;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05000000074505806) ;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(247, 101, 69, 1);
+  }
+  .profile-page-text41 {
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    font-size: 20px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-rectangle14 {
+    top: 237px;
+    left: 435px;
+    width: 300px;
+    height: 110px;
+    position: absolute;
+  }
+  .profile-page-text43 {
+    top: 252px;
+    left: 492px;
+    color: rgba(255, 255, 255, 1);
+    width: 124px;
+    height: auto;
+    position: absolute;
+    font-size: 35px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Baloo Bhaina;
+    font-weight: 400;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .profile-page-line3 {
+    top: 403.9765625px;
+    left: 453.7109375px;
+    width: 852px;
+    height: 1px;
+    position: absolute;
+  }
+  .profile-page-line6 {
+    top: 182px;
+    left: 69px;
+    width: 1263px;
+    height: 1px;
+    position: absolute;
+  }
+  .profile-page-line7 {
+    top: 937px;
+    left: 69px;
+    width: 1263px;
+    height: 1px;
+    position: absolute;
+  }
+  
+  .profile-picture{
+    margin-top: 300px;
+    margin-left: 160px;
+    width: 20%;
+  }
+  .input-img{
+    font-size: 15px;
+    color: white;
+    margin-top: 260px;
+    margin-left: -40px;
+  }
+
+  .uploaded-image {
+    width: 250px;
+    margin-top: 15px;
+    height: 270px;
+    border-color: rgb(57, 57, 42);
+    border-width: 2px;
+    object-fit: cover; 
+    border-radius: 10px;
+    
+  }
+  .forgot-password-frame02-input-fieldwith-label1 {
+    gap: 8px;
+    top: -115px;
+    left: 215px;
+    padding-left: 5px;
+    width: 190px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    position: absolute;
+    font-size: 15px;
+    text-align: left;
+    color: rgb(76, 76, 76);
+    border-color: black;
+    border-width: 2px;
+    align-items: flex-start;
+    font-family: Josefin Sans;
+    flex-direction: column;
+  }
+
+  .forgot-password-frame02-input-fieldwith-label:focus{
+    border-color: rgb(166, 155, 0); 
+    border-width: 2px;
+    color: rgb(225, 148, 148); 
+    outline: none;
+  }
+  .forgot-password-frame02-input-fieldwith-label2 {
+    gap: 8px;
+    top: 20px;
+    margin-top: -25px;
+    left: 215px;
+    padding-left: 5px;
+    width: 190px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    position: absolute;
+    font-size: 15px;
+    text-align: left;
+    color: rgb(76, 76, 76);
+    border-color: black;
+    border-width: 2px;
+    align-items: flex-start;
+    font-family: Josefin Sans;
+    flex-direction: column;
+  }
+
+  .forgot-password-frame02-input-fieldwith-label2:focus{
+    border-color: rgb(166, 155, 0); 
+    border-width: 2px;
+    color: rgb(225, 148, 148); 
+    outline: none;
+  }
+
+  .forgot-password-frame02-input-fieldwith-label20 {
+    gap: 8px;
+    margin-top: -89px;
+    left: 215px;
+    padding-left: 5px;
+    width: 190px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    position: absolute;
+    font-size: 15px;
+    text-align: left;
+    color: rgb(76, 76, 76);
+    border-color: black;
+    border-width: 2px;
+    align-items: flex-start;
+    font-family: Josefin Sans;
+    flex-direction: column;
+  }
+
+  .forgot-password-frame02-input-fieldwith-label20:focus{
+    border-color: rgb(166, 155, 0); 
+    border-width: 2px;
+    color: rgb(225, 148, 148); 
+    outline: none;
+  }
+
+  .forgot-password-frame02-input-fieldwith-label3 {
+    gap: 8px;
+    top: 20px;
+    margin-top: -23px;
+    left: 225px;
+    padding-left: 5px;
+    width: 190px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    position: absolute;
+    font-size: 15px;
+    text-align: left;
+    color: rgb(76, 76, 76);
+    border-color: black;
+    border-width: 2px;
+    align-items: flex-start;
+    font-family: Josefin Sans;
+    flex-direction: column;
+  }
+
+  .forgot-password-frame02-input-fieldwith-label3:focus{
+    border-color: rgb(166, 155, 0); 
+    border-width: 2px;
+    color: rgb(225, 148, 148); 
+    outline: none;
+  }
