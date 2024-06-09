@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "axios";
+import { useParams } from 'react-router-dom';
 
 const AddCatt = () => {
-    const [catName, setCatName] = useState("");
-    const [catDescription, setDescription] = useState("");
+    const { identifier } = useParams();
+    const [catName] = useState("");
+    const [catDescription] = useState("");
     const [catImage, setCatImage] = useState("");
-    const [gender, setGender] = useState("");
-    const [birthDate, setBirthDate] = useState("");
-    const [race, setRace] = useState("");
-    const {identifier} = useState();
+    const [gender] = useState("");
+    const [birthDate] = useState("");
+    const [race] = useState("");
 
+    console.log(identifier);
     useEffect(() => {
         const getDetails = async () => {
           try {
