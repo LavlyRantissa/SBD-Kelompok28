@@ -5,7 +5,6 @@ import "./ProfilePage.css";
 import axios from "axios";
 
 const ProfilePage = () => {
-<<<<<<< HEAD
   const { identifier } = useParams();
   const [userDetail, setUserDetail] = useState(null);
   const [image, setImage] = useState(null);
@@ -16,20 +15,6 @@ const ProfilePage = () => {
   const [buttonPN, setButtonPN] = useState(false);
   const [buttonAddress, setButtonAddress] = useState(false);
   const [buttonBalance, setButtonBalance] = useState(false);
-=======
-  const navigate = useNavigate();
-    const { identifier } = useParams();
-    const [userDetail, setUserDetail] = useState(null);
-    const [image, setImage] = useState(null);
-    const [linkPicture, setImageUrl] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [address, setAddress] = useState('');
-    const [balance, setBalance] = useState('');
-    const [buttonPN, setButtonPN] = useState(false);
-    const [buttonAddress, setButtonAddress] = useState(false);
-    const [buttonBalance, setButtonBalance] = useState(false);
-    const catId = 'fb9f94ec-9113-4011-a23b-d50f54c3fe6f';
->>>>>>> c9d20482a4ec61a1968ae1385b00bc93d04e40ac
 
   function toggleButtonPN() {
     setButtonPN(!buttonPN);
@@ -39,36 +24,15 @@ const ProfilePage = () => {
     setButtonAddress(!buttonAddress);
   }
 
-<<<<<<< HEAD
   const handleBalance1 = (event) => {
     const balance = event.target.value;
     setBalance(balance);
     if (balance < 0) {
       alert("harus posiif");
     } else {
-=======
-const handleBalance = async (event) => {
-  event.preventDefault();
-  setButtonBalance(!buttonBalance);
-
-  const response = await fetch(`http://localhost:9453/users/topup/${encodeURIComponent(identifier)}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ identifier, balance }),
-  });
-  try {
-   
-    if (response.status === 200) {
-      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
-    } else {
-      alert('Top Up Failed');
->>>>>>> c9d20482a4ec61a1968ae1385b00bc93d04e40ac
     }
   };
 
-<<<<<<< HEAD
   const handleBalance = async (event) => {
     event.preventDefault();
     setButtonBalance(!buttonBalance);
@@ -81,56 +45,6 @@ const handleBalance = async (event) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ identifier, balance }),
-=======
-const handleAddress = async (event) => {
-  setButtonAddress(!buttonAddress);
-  const response = await fetch(`http://localhost:9453/users/address/${encodeURIComponent(identifier)}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ identifier, address }),
-  });
-  try {
-   
-    if (response.status === 200) {
-      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
-    } else {
-      alert('Update Address Failed');
-    }
-  } catch (error) {
-    alert('There was an error. Please try again l3ater.');
-  }
-};
-
-const handlePN = async (event) => {
-  setButtonPN(!buttonPN);
-  const response = await fetch(`http://localhost:9453/users/phonenumber/${encodeURIComponent(identifier)}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ identifier, phoneNumber }),
-  });
-  try {
-   
-    if (response.status === 200) {
-      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
-    } else {
-      alert('Failed Update Phone Number');
-    }
-  } catch (error) {
-    alert('There was an error. Please try again l3ater.');
-  }
-};
-
-    const uploadImage = (event) => {
-      event.preventDefault();
-  
-      if (!image) {
-        console.log("Please select an image first");
-        return;
->>>>>>> c9d20482a4ec61a1968ae1385b00bc93d04e40ac
       }
     );
     try {
@@ -213,7 +127,6 @@ const handlePN = async (event) => {
         console.log(response);
         const linkPicture = response.data.secure_url;
         setImageUrl(linkPicture);
-<<<<<<< HEAD
         alert(linkPicture);
 
         Axios.put(
@@ -235,21 +148,6 @@ const handlePN = async (event) => {
           });
       })
       .catch((error) => {
-=======
-      
-
-        Axios.put(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`, { linkPicture }, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }).then((putResponse) => {
-          console.log('Image URL saved successfully:', putResponse.data);
-          alert('Profile Picture Saved');
-        }).catch((error) => {
-          console.error("Error saving the image URL:", error);
-        });
-      }).catch((error) => {
->>>>>>> c9d20482a4ec61a1968ae1385b00bc93d04e40ac
         console.error("Error uploading the image:", error);
       });
   };
@@ -282,13 +180,9 @@ const handlePN = async (event) => {
       <div className="profile-page-profile-page">
         <div className="profile-page-group1">
           <span className="profile-page-text">
-<<<<<<< HEAD
             <Link to={`/adoption/${identifier}`} className="notactiverl">
               ADOPT
             </Link>
-=======
-            <Link to={`/adoption/${identifier}/${catId}`} className='notactiverl'>ADOPT</Link>
->>>>>>> c9d20482a4ec61a1968ae1385b00bc93d04e40ac
           </span>
           <img
             src="https://res.cloudinary.com/dramhnsj2/image/upload/v1717589840/Frontend-Components/y6e54qbvtwgyyttiimjd.png"
@@ -433,8 +327,7 @@ const handlePN = async (event) => {
         </button>
         <button className="profile-page-frame00-button">
           <span className="profile-page-text41">
-          <Link to={`/`}>Log Out</Link>
-            
+            <span>Log Out</span>
           </span>
         </button>
         <img

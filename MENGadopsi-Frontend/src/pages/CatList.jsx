@@ -18,7 +18,7 @@ const CatList = () => {
         <div className="bg-secondary p-4 w-screen h-screen">
             <h1 className="flex flex-wrap px-2 justify-between">
             {cat.map((item, index) => (
-                <Card key={index} cat_image={item.cat_picture} cat_name={item.cat_name} description={item.description} />
+                <Card key={index} cat_picture={item.cat_picture} cat_name={item.cat_name} description={item.description} />
             ))}
             </h1>
         </div>
