@@ -32,7 +32,7 @@ const SignIn = () => {
             },
             body: JSON.stringify({ identifier, password }),
           });
-          
+          console.log(identifier);
           if (response.status === 200) {
             setSuccess(true);
             setTimeout(() => {

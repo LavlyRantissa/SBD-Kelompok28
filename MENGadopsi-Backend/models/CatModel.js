@@ -23,4 +23,24 @@ const getCat = async () => {
     }
 };
 
-module.exports = { createCat, getCat };
+const getCatById = async (catId) => {
+    try {
+        const result = await pool.query(`SELECT * FROM cats_table where cat_id = '${catId}'`);
+        return result.rows;
+    } catch (error) {
+        console.error('Error fetching cats:', error);
+        throw error;
+    }
+};
+
+const removeCat = async (catId) => {
+    try {
+        const result = await pool.query(`DELETE FROM cats_table where cat_id = '${catId}'`);
+        return result.rows;
+    } catch (error) {
+        console.error('Error remove cats:', error);
+        throw error;
+    }
+};
+
+module.exports = { createCat, getCat, getCatById, removeCat};
