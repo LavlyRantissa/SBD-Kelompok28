@@ -23,7 +23,7 @@ UML
 ![image](https://github.com/SistemBasisData2024/MENGadopsi/blob/main/image/UML.png?raw=true)
 
 ERD
-![image](https://github.com/SistemBasisData2024/MENGadopsi/blob/main/image/Flowchart.png?raw=true)
+![image](https://github.com/SistemBasisData2024/MENGadopsi/blob/main/image/ERD.png?raw=true)
 
 Flowchart
-![image](https://github.com/LavlyRantissa/testREADME/blob/main/Flowchart.png?raw=true)
+![image](https://github.com/SistemBasisData2024/MENGadopsi/blob/main/image/Flowchart.png?raw=true)
