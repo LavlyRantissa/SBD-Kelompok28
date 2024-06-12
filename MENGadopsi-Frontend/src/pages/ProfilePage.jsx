@@ -1,188 +1,172 @@
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import Axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
-import "./ProfilePage.css";
+import './ProfilePage.css'
 import axios from "axios";
 
+
 const ProfilePage = () => {
-  const { identifier } = useParams();
-  const [userDetail, setUserDetail] = useState(null);
-  const [image, setImage] = useState(null);
-  const [linkPicture, setImageUrl] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [balance, setBalance] = useState("");
-  const [buttonPN, setButtonPN] = useState(false);
-  const [buttonAddress, setButtonAddress] = useState(false);
-  const [buttonBalance, setButtonBalance] = useState(false);
+  const navigate = useNavigate();
+    const { identifier } = useParams();
+    const [userDetail, setUserDetail] = useState(null);
+    const [image, setImage] = useState(null);
+    const [linkPicture, setImageUrl] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
+    const [balance, setBalance] = useState('');
+    const [buttonPN, setButtonPN] = useState(false);
+    const [buttonAddress, setButtonAddress] = useState(false);
+    const [buttonBalance, setButtonBalance] = useState(false);
+    const catId = 'fb9f94ec-9113-4011-a23b-d50f54c3fe6f';
 
-  function toggleButtonPN() {
-    setButtonPN(!buttonPN);
+
+    function toggleButtonPN() {
+      setButtonPN(!buttonPN);
   }
-
+  
   function toogleButtonA() {
     setButtonAddress(!buttonAddress);
+}
+
+const handleBalance1 = (event) => {
+  const balance = event.target.value;
+  setBalance(balance);
+  if (balance < 0) {
+    alert('Please input > 0')
+  } else {
+    
   }
+};
 
-  const handleBalance1 = (event) => {
-    const balance = event.target.value;
-    setBalance(balance);
-    if (balance < 0) {
-      alert("harus posiif");
+const handleBalance = async (event) => {
+  event.preventDefault();
+  setButtonBalance(!buttonBalance);
+
+  const response = await fetch(`http://localhost:9453/users/topup/${encodeURIComponent(identifier)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ identifier, balance }),
+  });
+  try {
+   
+    if (response.status === 200) {
+      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
     } else {
+      alert('Top Up Failed');
     }
-  };
+  } catch (error) {
+    alert('There was an error. Please try again later.');
+  }
+};
 
-  const handleBalance = async (event) => {
-    event.preventDefault();
-    setButtonBalance(!buttonBalance);
-
-    const response = await fetch(
-      `http://localhost:9453/users/topup/${encodeURIComponent(identifier)}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ identifier, balance }),
-      }
-    );
-    try {
-      if (response.status === 200) {
-        alert("top up berhasil");
-      } else {
-        alert("top up gagal");
-      }
-    } catch (error) {
-      alert("There was an error. Please try again l3ater.");
+const handleAddress = async (event) => {
+  setButtonAddress(!buttonAddress);
+  const response = await fetch(`http://localhost:9453/users/address/${encodeURIComponent(identifier)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ identifier, address }),
+  });
+  try {
+   
+    if (response.status === 200) {
+      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
+    } else {
+      alert('Update Address Failed');
     }
-  };
+  } catch (error) {
+    alert('There was an error. Please try again l3ater.');
+  }
+};
 
-  const handleAddress = async (event) => {
-    setButtonAddress(!buttonAddress);
-    const response = await fetch(
-      `http://localhost:9453/users/address/${encodeURIComponent(identifier)}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ identifier, address }),
-      }
-    );
-    try {
-      if (response.status === 200) {
-        alert("address berhasil");
-      } else {
-        alert("address gagal");
-      }
-    } catch (error) {
-      alert("There was an error. Please try again l3ater.");
+const handlePN = async (event) => {
+  setButtonPN(!buttonPN);
+  const response = await fetch(`http://localhost:9453/users/phonenumber/${encodeURIComponent(identifier)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ identifier, phoneNumber }),
+  });
+  try {
+   
+    if (response.status === 200) {
+      navigate(`/profilePage/${encodeURIComponent(identifier)}`);
+    } else {
+      alert('Failed Update Phone Number');
     }
-  };
+  } catch (error) {
+    alert('There was an error. Please try again l3ater.');
+  }
+};
 
-  const handlePN = async (event) => {
-    setButtonPN(!buttonPN);
-    const response = await fetch(
-      `http://localhost:9453/users/phonenumber/${encodeURIComponent(
-        identifier
-      )}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ identifier, phoneNumber }),
+    const uploadImage = (event) => {
+      event.preventDefault();
+  
+      if (!image) {
+        console.log("Please select an image first");
+        return;
       }
-    );
-    try {
-      if (response.status === 200) {
-        alert("PN berhasil");
-      } else {
-        alert("PN gagal");
-      }
-    } catch (error) {
-      alert("There was an error. Please try again l3ater.");
-    }
-  };
-
-  const uploadImage = (event) => {
-    event.preventDefault();
-
-    if (!image) {
-      console.log("Please select an image first");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "bugtucs0");
-    formData.append("folder", "profile_picture_user");
-
-    Axios.post(
-      "https://api.cloudinary.com/v1_1/dramhnsj2/image/upload",
-      formData
-    )
-      .then((response) => {
+  
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "bugtucs0");
+      formData.append("folder", "profile_picture_user");
+  
+      Axios.post(
+        "https://api.cloudinary.com/v1_1/dramhnsj2/image/upload", 
+        formData
+      ).then((response) => {
         console.log(response);
         const linkPicture = response.data.secure_url;
         setImageUrl(linkPicture);
-        alert(linkPicture);
+      
 
-        Axios.put(
-          `http://localhost:9453/users/info/${encodeURIComponent(identifier)}`,
-          { linkPicture },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-          .then((putResponse) => {
-            console.log("Image URL saved successfully:", putResponse.data);
-            alert("Berhasil simpan gambar");
-            alert(linkPicture);
-          })
-          .catch((error) => {
-            console.error("Error saving the image URL:", error);
-          });
-      })
-      .catch((error) => {
+        Axios.put(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`, { linkPicture }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then((putResponse) => {
+          console.log('Image URL saved successfully:', putResponse.data);
+          alert('Profile Picture Saved');
+        }).catch((error) => {
+          console.error("Error saving the image URL:", error);
+        });
+      }).catch((error) => {
         console.error("Error uploading the image:", error);
       });
-  };
-
-  useEffect(() => {
-    const getDetails = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:9453/users/info/${encodeURIComponent(identifier)}`
-        );
-        if (response.status === 200) {
-          const data = await response.json();
-          setUserDetail(data.data);
-        } else if (response.status === 404) {
-          alert("Account not found");
-        } else {
+    };
+  
+    useEffect(() => {
+      const getDetails = async () => {
+        try {
+          const response = await fetch(`http://localhost:9453/users/info/${encodeURIComponent(identifier)}`);
+          if (response.status === 200) {
+            const data = await response.json();
+            setUserDetail(data.data);
+          } else if (response.status === 404) {
+            alert("Account not found");
+          } else {
+            alert("Failed to get user details");
+          }
+        } catch (error) {
+          console.error(error);
           alert("Failed to get user details");
         }
-      } catch (error) {
-        console.error(error);
-        alert("Failed to get user details");
-      }
-    };
-
-    getDetails();
-  }, [identifier]);
+      };
+  
+      getDetails();
+    }, [identifier]);
 
   return (
     <div className="profile-page-container">
       <div className="profile-page-profile-page">
         <div className="profile-page-group1">
           <span className="profile-page-text">
-            <Link to={`/adoption/${identifier}`} className="notactiverl">
-              ADOPT
-            </Link>
+            <span>ADOPT</span>
           </span>
           <img
             src="https://res.cloudinary.com/dramhnsj2/image/upload/v1717589840/Frontend-Components/y6e54qbvtwgyyttiimjd.png"
@@ -190,10 +174,10 @@ const ProfilePage = () => {
             className="profile-page-bg-sub-screenshot2024060301040011"
           />
           <span className="profile-page-text02">
-            <span>HOMEPAGE</span>
+          <Link to={`/cats/addcat/${identifier}`} className='notactiverl'>HOMEPAGE</Link>
           </span>
           <span className="profile-page-text04">
-            <span>OUR CAT</span>
+          <Link to={`/cats/${identifier}`} className='notactiverl'>OUR CAT</Link>
           </span>
           <span className="profile-page-text06">
             <span>CONTACT</span>
@@ -209,102 +193,104 @@ const ProfilePage = () => {
         </div>
 
         {userDetail && userDetail.profile_picture ? (
-          <div className="profile-page-rectangle13">
-            <img
-              src={userDetail.profile_picture}
-              alt="Uploaded"
-              className="uploaded-image"
-            />
-          </div>
-        ) : (
-          <img
-            src="https://res.cloudinary.com/dramhnsj2/image/upload/v1717590148/Frontend-Components/su56owgk62z6wx8xycoh.png"
-            alt="ProfilePicture-bg"
-            className="profile-page-rectangle13"
-          />
-        )}
-
-        <div className="w-[1390.01px] h-[0px] left-[35px] top-[182px] absolute border border-orange-300"></div>
-        <div className="w-[1390.01px] h-[0px] left-[35px] top-[937px] absolute border border-orange-300"></div>
-        <div className="w-[1000.24px] h-[0px] left-[453.71px] top-[403.98px] absolute border border-orange-300"></div>
+        <div className="profile-page-rectangle13">
+        <img src={userDetail.profile_picture} alt="Uploaded" className='uploaded-image' />
+      </div>)
+        : (
+        <img
+        src="https://res.cloudinary.com/dramhnsj2/image/upload/v1717590148/Frontend-Components/su56owgk62z6wx8xycoh.png"
+        alt="ProfilePicture-bg"
+        className="profile-page-rectangle13"
+      />)
+        }
+ 
+            <div className="w-[1390.01px] h-[0px] left-[35px] top-[182px] absolute border border-orange-300"></div>
+            <div className="w-[1390.01px] h-[0px] left-[35px] top-[937px] absolute border border-orange-300"></div>
+            <div className="w-[1000.24px] h-[0px] left-[453.71px] top-[403.98px] absolute border border-orange-300"></div>
         <span className="profile-page-text12">
-          <input
-            className="input-img"
-            type="file"
-            accept="image/*"
-            onChange={(event) => {
-              setImage(event.target.files[0]);
-            }}
-          />
+        <input className="input-img"
+              type="file" 
+              accept="image/*"
+              onChange={(event) => {
+                setImage(event.target.files[0]);
+              }}
+            />
         </span>
         <span className="profile-page-text14">
-          <span>{userDetail ? `I'm ${userDetail.username}` : ""}</span>
+        <span>{userDetail? `I'm ${userDetail.username}`: ""}</span>
         </span>
         <span className="profile-page-text16">
           <span>E-Mail </span>
         </span>
         <span className="profile-page-text18">
-          <span>Phone Number</span>
+          <span>
+            Phone Number
+          </span>
         </span>
         <span className="profile-page-text100">
-          <span>{userDetail ? userDetail.email : ""}</span>
+          <span>{userDetail? userDetail.email : ""}</span>
         </span>
         <span className="profile-page-text20">
-          <span>{userDetail ? userDetail.phone_number : ""}</span>
+        <span>{userDetail? userDetail.phone_number : ""}</span>
         </span>
         <span className="profile-page-text22">
-          <span>{userDetail ? userDetail.address : ""}</span>
+        <span>{userDetail? userDetail.address : ""}</span>
         </span>
         <span className="profile-page-text24">
-          <span>{userDetail ? `Rp. ${userDetail.balance}` : ""}</span>
+        <span>{userDetail? `Rp. ${userDetail.balance}` : ""}</span>
         </span>
         <span className="profile-page-text26">
           <span>Address</span>
         </span>
         <span className="profile-page-text28">
-          <span>{userDetail ? `User ID:  ${userDetail.user_id}` : ""}</span>
+        <span>{userDetail? `User ID:  ${userDetail.user_id}` : ""}</span>
         </span>
         <span className="profile-page-text30">
           <span>Balance</span>
-          {buttonBalance ? (
-            <input
-              type="number"
-              className="forgot-password-frame02-input-fieldwith-label2"
-              placeholder="Ex: 1000"
-              onChange={handleBalance1}
-              value={balance}
-            />
-          ) : (
-            <h1></h1>
-          )}
+          {buttonBalance ? 
+          <input
+          type="number"
+          className='forgot-password-frame02-input-fieldwith-label2'
+          placeholder='Ex: 1000'
+          onChange={handleBalance1}
+          value={balance}
+          />
+:
+<h1></h1>
+          }
 
-          {buttonAddress ? (
-            <input
-              type="text"
-              className="forgot-password-frame02-input-fieldwith-label20"
-              placeholder="Ex: Jl. Test No.10"
-              onChange={(event) => setAddress(event.target.value)}
-              value={address}
-            />
-          ) : (
-            <h1></h1>
-          )}
+{buttonAddress ? 
+          <input
+          type="text"
+                    className='forgot-password-frame02-input-fieldwith-label20'
+                    placeholder='Ex: Jl. Test No.10'
+                    onChange={(event) => setAddress(event.target.value)}
+                    value = {address}
+                />
+:
+<h1></h1>
+          }
 
-          {buttonPN ? (
-            <input
-              type="number"
-              className="forgot-password-frame02-input-fieldwith-label1"
-              placeholder="Ex: 081234567890"
-              onChange={(event) => setPhoneNumber(event.target.value)}
-              value={phoneNumber}
-            />
-          ) : (
-            <h1></h1>
-          )}
+{buttonPN ? 
+          <input
+          type="number"
+                    className='forgot-password-frame02-input-fieldwith-label1'
+                    placeholder='Ex: 081234567890'
+                    onChange={(event) => setPhoneNumber(event.target.value)}
+                    value = {phoneNumber}
+                />
+
+:
+<h1></h1>
+          }
+
+          
         </span>
         <button className="profile-page-button-new" onClick={handlePN}>
           <span className="profile-page-text32">
-            <span>{buttonPN ? "Update" : "Change"}</span>
+            <span>
+            {buttonPN? 'Update':'Change'}
+            </span>
           </span>
         </button>
         <button onClick={uploadImage} className="profile-page-button-new1">
@@ -314,20 +300,21 @@ const ProfilePage = () => {
         </button>
         <button className="profile-page-button-new2" onClick={handleAddress}>
           <span className="profile-page-text36">
-            <span>{buttonAddress ? "Update" : "Change"}</span>
+            <span>
+            {buttonAddress? 'Update':'Change'}
+              </span>
           </span>
         </button>
         <button className="profile-page-button-new3 " onClick={handleBalance}>
           <span className="profile-page-text38">
-            <span className="profile-page-text39">
-              {" "}
-              {buttonBalance ? "Confirm" : "Top Up"}
-            </span>
+            <span className="profile-page-text39"> {buttonBalance? 'Confirm':'Top Up'}
+              </span>
           </span>
         </button>
         <button className="profile-page-frame00-button">
           <span className="profile-page-text41">
-            <span>Log Out</span>
+          <Link to={`/`}>Log Out</Link>
+            
           </span>
         </button>
         <img
@@ -340,7 +327,7 @@ const ProfilePage = () => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfilePage;
+export default ProfilePage

@@ -62,7 +62,6 @@ const handleGetUser = async (req, res) => {
 
 const handleGetUserByIdentifier = async (req, res) => {
     const { identifier } = req.params;
-    console.log(identifier);
     try {
         const user = await getUserByIdentifier(identifier);
         if (user) {

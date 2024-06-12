@@ -1,0 +1,107 @@
+.cat-list-text02 {
+    top: 6px;
+    width: 100%;
+    left: 10%;
+    color: rgb(14, 62, 65);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .cat-list-text04 {
+    top: 49px;
+    left: 62%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .cat-list-text06 {
+    top: 49px;
+    left: 70%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .cat-list-text08 {
+    top: 49px;
+    left: 79%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .cat-list-frame2 {
+    gap: 10px;
+    top: 42px;
+    left: 51.5%;
+    width: 127px;
+    display: flex;
+    padding: 10px;
+    height: 50px;
+    position: absolute;
+    align-items: center;
+    border-radius: 49px;
+    justify-content: center;
+    background-color: rgba(251, 118, 13, 1);
+  }
+  .cat-list-text10 {
+    top: 49px;
+    left: 88%;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+
+  .cat-list-text {
+    top: 49px;
+    left: 600px;
+    bottom: 100px;
+    color: rgba(251, 118, 13, 1);
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-weight: 700;
+    line-height: 150%;
+    font-stretch: normal;
+    text-decoration: none;
+  }

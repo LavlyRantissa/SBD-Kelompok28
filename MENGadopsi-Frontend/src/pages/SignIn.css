@@ -308,12 +308,13 @@
     font-size: 20px;
     margin-left: 6%;
     margin-top: -2.5%;
+    width: 100%;
     margin-bottom: -1%;
     font-family: Josefin Sans;
   }
   .toast-bgsi{
     width: 100%;
-    background-color: #fdfaf3;
+    background-color: #7d745f;
   }
   
   .toast-closesi{

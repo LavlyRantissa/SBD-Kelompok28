@@ -30,17 +30,17 @@ const router = createBrowserRouter([
     element: <ProfilePage />,
   },
   {
-    path: "/adoption/:identifier",
+    path: "/adoption/:identifier/:catId",
     element: <Adoption />,
   },
   {
-    path: "/cats",
+    path: "/cats/:identifier",
     element: <CatList />,
   },
   {
     path: "/cats/addcat/:identifier",
     element: <AddCatt />,
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

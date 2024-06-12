@@ -1,5 +1,9 @@
 const { pool } = require('../config/db-config.js');
 
+pool.connect().then(() => {
+	console.log("Connected to PSQL Database");
+})
+
 const signIn = async (identifier, password) => {
     try {
         const result = await pool.query(
@@ -41,7 +45,6 @@ const getUser = async () => {
 };
 
 const getUserByIdentifier = async (identifier) => {
-    console.log('identifier', identifier);
     try {
         const result = await pool.query('SELECT * FROM users_table WHERE username = $1 or email = $1', [identifier]);
         return result.rows[0];
